@@ -1,11 +1,13 @@
 import time
 import random
 import winsound
+import pywhatkit
 
 def set_timer():
     timer = 0
     interval = int(input("What intervals do you want to work at?\n")) * 60
-    beep_time = random.randint(0, interval)
+    # beep_time = random.randint(0, interval)
+    beep_time = interval / 2
     timer_loop(timer, interval, beep_time)
 
 
@@ -13,10 +15,11 @@ def timer_loop(timer, interval, beep_time):
     while timer < interval:
         if beep_time == timer:
             winsound.Beep(1500, 500)
-            focus = input("Are you focused?")
-            if focus == "y":
+            # beep_time = random.randint(beep_time, timer)
+            focus = input("Are you focused? (Y/N)\n")
+            if focus == "Y" or "y":
                 print("Good job!")
-            else:
+            elif focus == "N" or "n":
                 print("Try again now!")
         time.sleep(1)
         timer += 1
@@ -24,10 +27,12 @@ def timer_loop(timer, interval, beep_time):
     if timer == interval:
         reset_timer(timer)
         print("Time for a break!")
+        time.sleep(5)
         break_time(interval / 4)
 
 
 def break_time(break_timer):
+    yt_player()
     timer = 0
     while timer < break_timer:
         time.sleep(1)
@@ -39,6 +44,13 @@ def break_time(break_timer):
 
 def reset_timer(timer):
     timer = 0
+
+
+def yt_player():
+    # put video links in the video array
+    videos = []
+    random_video = random.randint(0, len(videos) - 1)
+    pywhatkit.playonyt(videos[random_video])
 
 
 set_timer()
