@@ -17,9 +17,9 @@ def timer_loop(timer, interval, beep_time):
             winsound.Beep(1500, 500)
             # beep_time = random.randint(beep_time, timer)
             focus = input("Are you focused? (Y/N)\n")
-            if focus == "Y" or "y":
+            if focus in ["Y", "y"]:
                 print("Good job!")
-            elif focus == "N" or "n":
+            elif focus in ["N", "n"]:
                 print("Try again now!")
         time.sleep(1)
         timer += 1
@@ -48,7 +48,7 @@ def reset_timer(timer):
 
 def yt_player():
     # put video links in the video array
-    videos = []
+    videos = ["https://www.youtube.com/watch?v=kcelgrGY1h8"]
     random_video = random.randint(0, len(videos) - 1)
     pywhatkit.playonyt(videos[random_video])
 
